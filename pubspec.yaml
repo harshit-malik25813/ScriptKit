@@ -1,4 +1,4 @@
-name: hw_write
+name: ScriptKit
 description: Simple homework formatter app.
 publish_to: "none"
 version: 1.0.0+1
