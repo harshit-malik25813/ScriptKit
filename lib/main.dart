@@ -160,7 +160,7 @@ class _HomeworkPageState extends State<HomeworkPage> {
           ),
           const SizedBox(height: 8),
           SelectableText(
-            '```\n$_output\n```',
+            '\n$_output\n',
             style: const TextStyle(
               color: Colors.white,
               fontFamily: 'monospace',

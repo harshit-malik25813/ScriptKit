@@ -3,43 +3,43 @@ String textBold(String value) => '*$value*';
 String maths(String hw) {
   final value = hw.trim();
   if (value.isEmpty) return '';
-  return '${textBold('Maths')}: $value\n';
+  return '${textBold('Maths')}: $value\n\n';
 }
 
 String phy(String hw) {
   final value = hw.trim();
   if (value.isEmpty) return '';
-  return '${textBold('Physics')}: $value\n';
+  return '${textBold('Physics')}: $value\n\n';
 }
 
 String chem(String hw) {
   final value = hw.trim();
   if (value.isEmpty) return '';
-  return '${textBold('Chemistry')}: $value\n';
+  return '${textBold('Chemistry')}: $value\n\n';
 }
 
 String bio(String hw) {
   final value = hw.trim();
   if (value.isEmpty) return '';
-  return '${textBold('Biology')}: $value\n';
+  return '${textBold('Biology')}: $value\n\n';
 }
 
 String sst(String hw) {
   final value = hw.trim();
   if (value.isEmpty) return '';
-  return '${textBold('SST')}: $value\n';
+  return '${textBold('SST')}: $value\n\n';
 }
 
 String hindi(String hw) {
   final value = hw.trim();
   if (value.isEmpty) return '';
-  return '${textBold('Hindi')}: $value\n';
+  return '${textBold('Hindi')}: $value\n\n';
 }
 
 String eng(String hw) {
   final value = hw.trim();
   if (value.isEmpty) return '';
-  return '${textBold('English')}: $value\n';
+  return '${textBold('English')}: $value\n\n';
 }
 
 String additional(String detail) => detail.trim();
@@ -48,7 +48,7 @@ String printHeader(DateTime now) {
   final date = '${now.day.toString().padLeft(2, '0')}-'
       '${now.month.toString().padLeft(2, '0')}-'
       '${now.year}';
-  return '${textBold('Homework')}\n\n${textBold(date)}\n';
+  return '${textBold('Homework')}\n\n${textBold(date)}\n\n';
 }
 
 String buildHomework({
