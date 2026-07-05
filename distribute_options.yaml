@@ -1,0 +1,21 @@
+output: dist/
+
+releases:
+  - name: production
+
+    jobs:
+
+      - name: windows
+        package:
+          platform: windows
+          target: exe
+
+      - name: linux
+        package:
+          platform: linux
+          target: appimage
+
+      - name: mac
+        package:
+          platform: macos
+          target: dmg
