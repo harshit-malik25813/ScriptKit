@@ -109,8 +109,6 @@ jobs:
   publish-release:
     needs:
       - build-windows
-      - build-macos-intel
-      - build-macos-arm64
       - build-linux
     runs-on: ubuntu-latest
 
