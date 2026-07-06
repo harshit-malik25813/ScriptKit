@@ -27,25 +27,15 @@ jobs:
 
       - name: Install Fastforge
         run: dart pub global activate fastforge
-
-      - name: Add Fastforge to PATH
-        shell: pwsh
-        run: |
-          "$env:LOCALAPPDATA\Pub\Cache\bin" | Out-File -FilePath $env:GITHUB_PATH -Append -Encoding utf8
-      - name: Verify FastForge installation
-        shell: pwsh
-        run: |
-          dart pub global list
-          Get-ChildItem "$env:LOCALAPPDATA\Pub\Cache\bin"
       - name: Install Inno Setup
         run: choco install innosetup --no-progress -y
 
       - name: Build and stage Windows asset
-        shell: bash
+        shell: pwsh
         env:
           RELEASE_TAG: ${{ github.ref_name }}
         run: |
-          fastforge release --name windows-x64
+          & "$env:LOCALAPPDATA\Pub\Cache\bin\fastforge.bat" release --name windows-x64
 
       - name: Upload staged Windows asset
         uses: actions/upload-artifact@v4
