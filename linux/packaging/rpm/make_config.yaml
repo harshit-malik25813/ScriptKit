@@ -1,0 +1,17 @@
+display_name: ScriptKit
+summary: Homework formatter app
+group: Applications/Utilities
+vendor: ScriptKit
+packager: ScriptKit maintainers
+packagerEmail: noreply@example.com
+license: MIT
+url: https://github.com/hmalik/ScriptKit
+icon: assets/ScriptKit_logo.png
+generic_name: Homework formatter
+keywords:
+  - homework
+  - formatter
+  - script
+categories:
+  - Utility
+startup_notify: true

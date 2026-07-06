@@ -1,0 +1,9 @@
+app_id: 4D4E3D89-20D4-4B33-9E9D-3F1D7CB4C3C8
+publisher: ScriptKit
+publisher_url: https://github.com/hmalik/ScriptKit
+display_name: ScriptKit
+create_desktop_icon: true
+locales:
+  - en
+  - zh
+setup_icon_file: windows/runner/resources/app_icon.ico
