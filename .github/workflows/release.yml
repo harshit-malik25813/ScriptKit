@@ -137,6 +137,9 @@ jobs:
             p7zip-full \
             rpm \
             zip
+            
+          sudo apt-get install -y libfuse2 || \
+          sudo apt-get install -y libfuse2t64
 
       - name: Install AppImage tooling
         run: |
