@@ -32,7 +32,11 @@ jobs:
         shell: pwsh
         run: |
           "$env:LOCALAPPDATA\Pub\Cache\bin" | Out-File -FilePath $env:GITHUB_PATH -Append -Encoding utf8
-
+      - name: Verify FastForge installation
+        shell: pwsh
+        run: |
+          dart pub global list
+          Get-ChildItem "$env:LOCALAPPDATA\Pub\Cache\bin"
       - name: Install Inno Setup
         run: choco install innosetup --no-progress -y
 
