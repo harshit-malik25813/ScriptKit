@@ -1,63 +1,69 @@
-# ScriptKit
+# Homework Formatter
 
-ScriptKit is a Flutter desktop app for formatting homework.
+![Flutter](https://img.shields.io/badge/Flutter-3.x-02569B?logo=flutter\&logoColor=white)
+![Dart](https://img.shields.io/badge/Dart-3.x-0175C2?logo=dart\&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Windows](https://img.shields.io/badge/Windows-Untested-lightgrey?logo=windows)
+![macOS](https://img.shields.io/badge/macOS-Tested-success?logo=apple)
+![Android](https://img.shields.io/badge/Android-Tested-success?logo=android)
 
-## Release Builds
+A simple Flutter application that formats school homework into a clean, shareable message.
 
-Desktop release automation is driven by [Fastforge](https://fastforge.dev) and
-the GitHub Actions workflow at [.github/workflows/release.yml](.github/workflows/release.yml).
+Instead of manually typing homework every day, simply enter each subject's homework, generate the formatted output, and copy it to your clipboard with one click.
 
-To cut a release, push a tag that starts with `v`:
+## Features
 
-```bash
-git tag v1.2.3
-git push origin v1.2.3
+* 📚 Individual fields for:
+
+  * Maths
+  * Physics
+  * Chemistry
+  * Biology
+  * SST
+  * Hindi
+  * English
+  * Additional Details
+* ✨ Automatically formats homework into a neat message.
+* 📋 One-click copy to clipboard.
+* 🗓 Automatically inserts the current date.
+* 🎨 Clean Material 3 interface.
+
+## Platform Support
+
+| Platform |    Status   | Notes                                                         |
+| -------- | :---------: | ------------------------------------------------------------- |
+| Android  |   ✅ Tested  | Verified on Samsung devices running Android 15 and Android 16 |
+| macOS    |   ✅ Tested  | Verified on Apple Silicon (M5 and M1 Pro)                     |
+| Windows  | ⚠️ Untested | Expected to work, but has not yet been tested                 |
+
+## Example Output
+
+```text
+*Homework*
+
+*06-07-2026*
+
+*Maths*: Complete Exercise 5.2
+
+*Physics*: Learn Chapter 3
+
+*Chemistry*: Write practical observations
+
+*English*: Read pages 40–45
+
+Bring your practical file tomorrow.
 ```
 
-That workflow will:
+## How It Works
 
-1. Package the Windows, macOS, and Linux desktop targets with Fastforge.
-2. Stage versioned assets using the tag name, such as `ScriptKit-v1.2.3-linux-x86_64.deb`.
-3. Upload the staged files to the GitHub Release for that tag.
+The app collects homework for each subject and generates a clean, formatted message. Empty subjects are automatically omitted, ensuring the output only contains homework that has been entered.
 
-## Fastforge Configuration
+## Tech Stack
 
-Packaging and release metadata live in [distribute_options.yaml](distribute_options.yaml).
-Platform-specific packaging settings are stored under the desktop packaging
-directories, for example:
+* Flutter
+* Dart
+* Material 3
 
-- [windows/packaging/exe/make_config.yaml](windows/packaging/exe/make_config.yaml)
-- [linux/packaging/appimage/make_config.yaml](linux/packaging/appimage/make_config.yaml)
-- [linux/packaging/deb/make_config.yaml](linux/packaging/deb/make_config.yaml)
-- [linux/packaging/rpm/make_config.yaml](linux/packaging/rpm/make_config.yaml)
+## License
 
-The helper script at [scripts/stage-release-asset.sh](scripts/stage-release-asset.sh)
-copies each packaged artifact into a tag-scoped staging directory before the
-workflow uploads it to the release.
-
-## Local Packaging
-
-To build a specific release job locally, install Fastforge and run the matching
-release name from `distribute_options.yaml`.
-
-For example, to build the Linux desktop artifacts:
-
-```bash
-dart pub global activate fastforge
-export RELEASE_TAG=v1.2.3
-fastforge release --name linux-x64
-```
-
-## Getting Started
-
-This project is a starting point for a Flutter desktop application.
-
-A few resources to get you started if you are new to Flutter:
-
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+This project is licensed under the AGPL-3.0 License.
