@@ -28,41 +28,47 @@ class HomeworkPage extends StatefulWidget {
 }
 
 class _HomeworkPageState extends State<HomeworkPage> {
-  final _maths = TextEditingController();
-  final _physics = TextEditingController();
-  final _chemistry = TextEditingController();
-  final _biology = TextEditingController();
-  final _sst = TextEditingController();
-  final _hindi = TextEditingController();
-  final _english = TextEditingController();
-  final _additional = TextEditingController();
+  final _className = TextEditingController(text: 'CLASS');
+  final _date = TextEditingController(text: _formatDate(DateTime.now()));
+
+  final _lectureSubjects = List.generate(6, (_) => TextEditingController());
+  final _lectureClasswork = List.generate(6, (_) => TextEditingController());
+  final _lectureHomework = List.generate(6, (_) => TextEditingController());
+
+  final _lectureEmojis = const ['🔴', '🔵', '🟢', '🟡', '🟠', '🟣'];
 
   String _output = '';
 
   @override
   void dispose() {
-    _maths.dispose();
-    _physics.dispose();
-    _chemistry.dispose();
-    _biology.dispose();
-    _sst.dispose();
-    _hindi.dispose();
-    _english.dispose();
-    _additional.dispose();
+    _className.dispose();
+    _date.dispose();
+    for (final controller in _lectureSubjects) {
+      controller.dispose();
+    }
+    for (final controller in _lectureClasswork) {
+      controller.dispose();
+    }
+    for (final controller in _lectureHomework) {
+      controller.dispose();
+    }
     super.dispose();
   }
 
   void _generate() {
     setState(() {
       _output = buildHomework(
-        mathsHw: _maths.text,
-        physicsHw: _physics.text,
-        chemistryHw: _chemistry.text,
-        biologyHw: _biology.text,
-        sstHw: _sst.text,
-        hindiHw: _hindi.text,
-        englishHw: _english.text,
-        additionalDetails: _additional.text,
+        className: _className.text,
+        dateText: _date.text,
+        lectures: List.generate(
+          6,
+          (index) => LectureEntry(
+            emoji: _lectureEmojis[index],
+            subject: _lectureSubjects[index].text,
+            classwork: _lectureClasswork[index].text,
+            homework: _lectureHomework[index].text,
+          ),
+        ),
       );
     });
   }
@@ -79,25 +85,17 @@ class _HomeworkPageState extends State<HomeworkPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Homework Formatter')),
+      appBar: AppBar(title: const Text('Classwork & Homework Formatter')),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _inputField(_maths, 'Maths'),
-              _inputField(_physics, 'Physics'),
-              _inputField(_chemistry, 'Chemistry'),
-              _inputField(_biology, 'Biology'),
-              _inputField(_sst, 'SST'),
-              _inputField(_hindi, 'Hindi'),
-              _inputField(_english, 'English'),
-              _inputField(
-                _additional,
-                'Additional details',
-                maxLines: 3,
-              ),
+              _inputField(_className, 'Class / Section'),
+              _inputField(_date, 'Date (DD/MM/YYYY)'),
+              const SizedBox(height: 8),
+              ...List.generate(6, _lectureCard),
               const SizedBox(height: 12),
               FilledButton(
                 onPressed: _generate,
@@ -125,6 +123,32 @@ class _HomeworkPageState extends State<HomeworkPage> {
         decoration: InputDecoration(
           labelText: label,
           border: const OutlineInputBorder(),
+        ),
+      ),
+    );
+  }
+
+  Widget _lectureCard(int index) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 14),
+      child: Card(
+        elevation: 0,
+        color: Theme.of(context).colorScheme.surfaceContainerHighest,
+        child: Padding(
+          padding: const EdgeInsets.all(14),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Lecture ${index + 1}',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const SizedBox(height: 12),
+              _inputField(_lectureSubjects[index], 'Subject Name'),
+              _inputField(_lectureClasswork[index], 'Classwork', maxLines: 2),
+              _inputField(_lectureHomework[index], 'Homework', maxLines: 2),
+            ],
+          ),
         ),
       ),
     );
@@ -170,5 +194,11 @@ class _HomeworkPageState extends State<HomeworkPage> {
         ],
       ),
     );
+  }
+
+  static String _formatDate(DateTime now) {
+    final day = now.day.toString().padLeft(2, '0');
+    final month = now.month.toString().padLeft(2, '0');
+    return '$day/$month/${now.year}';
   }
 }

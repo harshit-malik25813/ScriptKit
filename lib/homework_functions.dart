@@ -1,84 +1,71 @@
 String textBold(String value) => '*$value*';
 
-String maths(String hw) {
-  final value = hw.trim();
-  if (value.isEmpty) return '';
-  return '${textBold('Maths')}: $value\n\n';
+String textItalic(String value) => '_${value}_';
+
+String textBoldItalic(String value) => '*_${value}_*';
+
+String _trimmedOrFallback(String value, String fallback) {
+  final trimmed = value.trim();
+  return trimmed.isEmpty ? fallback : trimmed;
 }
 
-String phy(String hw) {
-  final value = hw.trim();
-  if (value.isEmpty) return '';
-  return '${textBold('Physics')}: $value\n\n';
+String _trimmed(String value) => value.trim();
+
+String formatDate(DateTime now) {
+  final day = now.day.toString().padLeft(2, '0');
+  final month = now.month.toString().padLeft(2, '0');
+  return '$day/$month/${now.year}';
 }
 
-String chem(String hw) {
-  final value = hw.trim();
-  if (value.isEmpty) return '';
-  return '${textBold('Chemistry')}: $value\n\n';
+class LectureEntry {
+  const LectureEntry({
+    required this.emoji,
+    required this.subject,
+    required this.classwork,
+    required this.homework,
+  });
+
+  final String emoji;
+  final String subject;
+  final String classwork;
+  final String homework;
 }
 
-String bio(String hw) {
-  final value = hw.trim();
-  if (value.isEmpty) return '';
-  return '${textBold('Biology')}: $value\n\n';
-}
-
-String sst(String hw) {
-  final value = hw.trim();
-  if (value.isEmpty) return '';
-  return '${textBold('SST')}: $value\n\n';
-}
-
-String hindi(String hw) {
-  final value = hw.trim();
-  if (value.isEmpty) return '';
-  return '${textBold('Hindi')}: $value\n\n';
-}
-
-String eng(String hw) {
-  final value = hw.trim();
-  if (value.isEmpty) return '';
-  return '${textBold('English')}: $value\n\n';
-}
-
-String additional(String detail) => detail.trim();
-
-String printHeader(DateTime now) {
-  final date = '${now.day.toString().padLeft(2, '0')}-'
-      '${now.month.toString().padLeft(2, '0')}-'
-      '${now.year}';
-  return '${textBold('Homework')}\n\n${textBold(date)}\n\n';
+String _lectureBlock({
+  required int number,
+  required LectureEntry lecture,
+}) {
+  final subject = _trimmedOrFallback(lecture.subject, 'Subject Name');
+  final classwork = _trimmed(lecture.classwork);
+  final homework = _trimmed(lecture.homework);
+  return [
+    '${lecture.emoji} ${textBold('LECTURE $number: $subject')}',
+    '${textBold('Classwork')} : $classwork',
+    '${textBold('Homework')} : $homework',
+    '',
+  ].join('\n');
 }
 
 String buildHomework({
-  required String mathsHw,
-  required String physicsHw,
-  required String chemistryHw,
-  required String biologyHw,
-  required String sstHw,
-  required String hindiHw,
-  required String englishHw,
-  required String additionalDetails,
+  required String className,
+  required String dateText,
+  required List<LectureEntry> lectures,
   DateTime? now,
 }) {
   final buffer = StringBuffer();
-  buffer.write(printHeader(now ?? DateTime.now()));
-  buffer.write(maths(mathsHw));
-  buffer.write(phy(physicsHw));
-  buffer.write(chem(chemistryHw));
-  buffer.write(bio(biologyHw));
-  buffer.write(sst(sstHw));
-  buffer.write(hindi(hindiHw));
-  buffer.write(eng(englishHw));
+  final resolvedDate = _trimmed(dateText).isEmpty
+      ? formatDate(now ?? DateTime.now())
+      : _trimmed(dateText);
 
-  final extra = additional(additionalDetails);
-  if (extra.isNotEmpty) {
-    if (!buffer.toString().endsWith('\n')) {
-      buffer.writeln();
-    }
-    buffer.writeln();
-    buffer.write(extra);
+  // ignore: unnecessary_string_interpolations
+  buffer.writeln('${textBoldItalic("DAILY CLASSWORK & HOMEWORK UPDATE")}');
+  buffer.writeln();
+  buffer.writeln('${textBoldItalic(_trimmedOrFallback(className, 'CLASS'))}-');
+  buffer.writeln('${textBold('Date')} : $resolvedDate');
+  buffer.writeln();
+
+  for (var index = 0; index < lectures.length; index++) {
+    buffer.write(_lectureBlock(number: index + 1, lecture: lectures[index]));
   }
 
   return buffer.toString().trimRight();
