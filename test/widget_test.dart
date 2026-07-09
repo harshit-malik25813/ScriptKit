@@ -9,7 +9,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:ScriptKit/main.dart';
+import 'package:scriptkit/main.dart';
 
 void main() {
   testWidgets('renders the homework formatter screen', (WidgetTester tester) async {
