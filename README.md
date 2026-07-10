@@ -13,20 +13,14 @@ Instead of manually typing homework every day, simply enter each subject's homew
 
 ## Features
 
-* 📚 Individual fields for:
-
-  * Maths
-  * Physics
-  * Chemistry
-  * Biology
-  * SST
-  * Hindi
-  * English
-  * Additional Details
-* ✨ Automatically formats homework into a neat message.
-* 📋 One-click copy to clipboard.
-* 🗓 Automatically inserts the current date.
-* 🎨 Clean Material 3 interface.
+* Individual fields for:
+	* Six Lectures, each containing:
+		* 1 Classwork (CW) field
+		* 1 Homework (HW) field
+* Automatically formats homework into a neat message.
+* One-click copy to clipboard.
+* Automatically inserts the current date.
+* Clean Material 3 interface.
 
 ## Platform Support
 
@@ -39,19 +33,29 @@ Instead of manually typing homework every day, simply enter each subject's homew
 ## Example Output
 
 ```text
-*Homework*
+*_DAILY CLASSWORK & HOMEWORK UPDATE_*
 
-*06-07-2026*
+*_X / Ambition_*-
+*Date* : 10/07/2026
 
-*Maths*: Complete Exercise 5.2
-
-*Physics*: Learn Chapter 3
-
-*Chemistry*: Write practical observations
-
-*English*: Read pages 40–45
-
-Bring your practical file tomorrow.
+🔴 *LECTURE 1: Maths*
+*Classwork* : Practice of Complimentary T-Ratios
+*Homework* : solve given questions
+🔵 *LECTURE 2: Hindi*
+*Classwork* : Test Conducted
+*Homework* : Test of UT-4 Syllabus to be held
+🟢 *LECTURE 3: SST*
+*Classwork* : Substitute Lecture
+*Homework* : Learn GK assignment
+🟡 *LECTURE 4: Chemistry*
+*Classwork* : Carbon and its Compunds Explanation
+*Homework* : Revise work done in class
+🟠 *LECTURE 5: Physics*
+*Classwork* : Doubts + Magnetic Flux
+*Homework* : Prepare for test
+🟣 *LECTURE 6: Maths*
+*Classwork* : Trigonometry Advance
+*Homework* : Do given questions
 ```
 
 ## How It Works
