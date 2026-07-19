@@ -60,7 +60,7 @@ String buildHomework({
   // ignore: unnecessary_string_interpolations
   buffer.writeln('${textBoldItalic("DAILY CLASSWORK & HOMEWORK UPDATE")}');
   buffer.writeln();
-  buffer.writeln('${textBoldItalic(_trimmedOrFallback(className, 'CLASS'))}-');
+  buffer.writeln(textBoldItalic(_trimmedOrFallback('CLASS - $className', 'CLASS-'),),);
   buffer.writeln('${textBold('Date')} : $resolvedDate');
   buffer.writeln();
 
