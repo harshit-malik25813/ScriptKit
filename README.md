@@ -35,7 +35,7 @@ Instead of manually typing homework every day, simply enter each subject's homew
 ```text
 *_DAILY CLASSWORK & HOMEWORK UPDATE_*
 
-*_X / Ambition_*-
+*_CLASS- X / Ambition_*
 *Date* : 10/07/2026
 
 🔴 *LECTURE 1: Maths*
